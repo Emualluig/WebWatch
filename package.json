@@ -1,0 +1,20 @@
+{
+  "name": "webwatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "watch": "npm run build && node ./build/Watch.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node-notifier": "^8.0.5",
+    "typescript": "^5.6.3"
+  }
+}
