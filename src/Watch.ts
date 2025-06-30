@@ -2,13 +2,13 @@ import axios from 'axios';
 import notifier from "node-notifier";
 
 const urls = [
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=CLAS&cournum=104", text: "CLAS104"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=PHIL&cournum=145", text: "PHIL145"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=PSYCH&cournum=101", text: "PSYCH101"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=ECON&cournum=241", text: "ECON241"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=HEALTH&cournum=105", text: "HEALTH105"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=CLAS&cournum=201", text: "CLAS201"},
-    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1249&subject=CLAS&cournum=202", text: "CLAS202"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=CLAS&cournum=202", text: "CLAS202"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=CLAS&cournum=205", text: "CLAS205"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=CLAS&cournum=252", text: "CLAS252"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=PHIL&cournum=145", text: "PHIL145"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=HEALTH&cournum=105", text: "HEALTH105"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=HEALTH&cournum=100", text: "HEALTH100"},
+    {url: "https://classes.uwaterloo.ca/cgi-bin/cgiwrap/infocour/salook.pl?level=under&sess=1251&subject=HIST&cournum=216", text: "HIST216"}
 ];
 
 class WatcherObject {
@@ -32,6 +32,7 @@ class WatcherObject {
                     notifier.notify({
                         title: "Website Change!",
                         message: this.alertText,
+                        
                     });
                 }
             }
@@ -48,7 +49,7 @@ const sleep = async (timeout: number): Promise<void> => {
 }
 
 const run = async () => {
-    const cooldown = 60; // Seconds
+    const cooldown = 30; // Seconds
     const watchers = urls.map((url) => new WatcherObject(url.url, url.text));
     while (true) {
         for await (const watcher of watchers) {
